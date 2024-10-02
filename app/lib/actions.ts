@@ -60,7 +60,7 @@ const FormSchema = z.object({
     } catch (error) {
       // If a database error occurs, return a more specific error.
       return {
-        message: 'Database Error: Failed to Create Invoice.',
+        message: 'Database Error: Failed to Create Invoice.' + error,
       };
     }
    
@@ -102,7 +102,7 @@ export async function updateInvoice(
         WHERE id = ${id}
       `;
     } catch (error) {
-      return { message: 'Database Error: Failed to Update Invoice.' };
+      return { message: 'Database Error: Failed to Update Invoice.' + error };
     }
    
     revalidatePath('/dashboard/invoices');
@@ -115,7 +115,7 @@ export async function updateInvoice(
       revalidatePath('/dashboard/invoices');
       return { message: 'Deleted Invoice.' };
     } catch (error) {
-      return { message: 'Database Error: Failed to Delete Invoice.' };
+      return { message: 'Database Error: Failed to Delete Invoice.' + error};
     }
   }
 

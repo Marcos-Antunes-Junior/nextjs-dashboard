@@ -16,14 +16,10 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
   const initialState: State = { message: null, errors: {} };
   const [state, formAction] = useActionState(createInvoice, initialState);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); 
-
-   
-    const formData = new FormData(event.currentTarget);
-
-    
-    await formAction(formData);
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); 
+    const data = new FormData(e.currentTarget);
+   formAction(data); 
   };
   return (
     <form onSubmit={handleSubmit}>
